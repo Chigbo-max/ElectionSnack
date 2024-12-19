@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Election {
 
-    private List<Long>votedVotersList = new ArrayList<>();
     public List<Vote>votes = new ArrayList<>();
     private ElectoralBody electoralBody;
 
@@ -20,11 +19,10 @@ public class Election {
         validateCandidate(candidateId);
         validateSpecificCandidateVote(voterId, candidateId);
 
-        votedVotersList.add(voterId);
-            Vote vote = new Vote(voterId, candidateId);
-            votes.add(vote);
+        Vote vote = new Vote(voterId, candidateId);
+        votes.add(vote);
 
-            return vote;
+        return vote;
     }
 
     private void validateSpecificCandidateVote(long voterId, int candidateId) {
