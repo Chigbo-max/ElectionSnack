@@ -10,9 +10,9 @@ class CandidateTest {
     public void testThatCandidateIdIsCorrect() {
         ElectoralBody electoralBody = new ElectoralBody();
         Candidate candidate = electoralBody.registerCandidate("Bola", "Bola", "President");
-        assertEquals(electoralBody.getCandidateId(), candidate.getId());
+        assertEquals(0, candidate.getId());
         Candidate candidate2 = electoralBody.registerCandidate("Bola", "Bola", "President");
-        assertEquals(electoralBody.getCandidateId(), candidate2.getId());
+        assertEquals(1, candidate2.getId());
     }
 
     @Test
@@ -23,5 +23,7 @@ class CandidateTest {
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {electoralBody.findCandidateNameByPosition("Governor");});
         assertEquals(illegalArgumentException.getMessage(),"The position does not exist");
     }
+
+
 
 }

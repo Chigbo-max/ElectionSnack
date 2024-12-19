@@ -7,7 +7,6 @@ public class voterInterface {
 
     private static ElectoralBody electoralBody = new ElectoralBody();
     private static Voter voter = new Voter();
-    private static Election election = new Election(electoralBody);
 
 
     public static void main(String[] args) {
@@ -75,7 +74,7 @@ public class voterInterface {
        int candidateId = selectCandidate();
         long voterId = collectLongInput("Enter your registration number: ");
         try {
-            Vote vote = election.castVote(voterId, candidateId);
+            Vote vote = voter.castVote(voterId, candidateId);
 
             display("Your vote for" + " " + electoralBody.getCandidateName(candidateId) + " " + "with ID no:" + " " + vote.getCandidateId() + " " + "was successful");
         }
@@ -162,7 +161,7 @@ public class voterInterface {
 
     public static void findListOfVotedCandidate(){
 
-        for (Vote list : election.votes) {
+        for (Vote list : voter.votes) {
             System.out.println(list.toString());
         }
         goToMainMenu();

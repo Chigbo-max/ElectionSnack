@@ -7,8 +7,8 @@ import java.util.Random;
 public class ElectoralBody {
     public List<Candidate> candidateList = new ArrayList<Candidate>();
     private List<Voter> voterList = new ArrayList<>();
-    public List<Long> voterIdList = new ArrayList<>();
-    public List<Integer>candidateIdList = new ArrayList<>();
+    public static List<Long> voterIdList = new ArrayList<>();
+    public static List<Integer>candidateIdList = new ArrayList<>();
 
     private int numberOfCandidates;
     private int numberOfVoters;
