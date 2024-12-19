@@ -18,10 +18,7 @@ public class Election {
 
         validateVoter(voterId);
         validateCandidate(candidateId);
-
-        if(hasVotedASpecificCandidate(voterId, candidateId)){
-            throw new CandidateHasBeenVotedException("You have voted already voted for this candidate");
-        }
+        validateSpecificCandidateVote(voterId, candidateId);
 
         votedVotersList.add(voterId);
             Vote vote = new Vote(voterId, candidateId);
@@ -30,14 +27,14 @@ public class Election {
             return vote;
     }
 
-
-
-    public long getRecentVoterId(){
-        return votedVotersList.get(votedVotersList.size()-1);
+    private void validateSpecificCandidateVote(long voterId, int candidateId) {
+        if(hasVotedASpecificCandidate(voterId, candidateId)){
+            throw new CandidateHasBeenVotedException("You have voted already voted for this candidate");
+        }
     }
 
 
-    public boolean hasVotedASpecificCandidate(long voterId, int candidateId) {
+    private boolean hasVotedASpecificCandidate(long voterId, int candidateId) {
         for (Vote vote : votes) {
             if(vote.getCandidateId() == candidateId && vote.getVoterId() == voterId){
              return true;
@@ -54,7 +51,7 @@ public class Election {
     }
 
     public void validateCandidate(int candidateId) {
-        if(electoralBody.getRegisteredCandidateIds().contains(candidateId)){
+        if(electoralBody.candidateIdList.contains(candidateId)){
             return;
         }
         throw new CandidateNotRegisteredException("Candidate with id " + candidateId + " is not registered");

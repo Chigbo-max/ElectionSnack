@@ -8,6 +8,7 @@ public class ElectoralBody {
     public List<Candidate> candidateList = new ArrayList<Candidate>();
     private List<Voter> voterList = new ArrayList<>();
     public List<Long> voterIdList = new ArrayList<>();
+    public List<Integer>candidateIdList = new ArrayList<>();
 
     private int numberOfCandidates;
     private int numberOfVoters;
@@ -22,9 +23,10 @@ public class ElectoralBody {
     }
 
     public Candidate registerCandidate(String firstName, String lastName, String position) {
-       numberOfCandidates++;
+       int candidateId = numberOfCandidates++;
+       candidateIdList.add(candidateId);
        String name = firstName + " " + lastName;
-       Candidate candidate = new Candidate(name, position, numberOfCandidates);
+       Candidate candidate = new Candidate(name, position, candidateId);
        candidateList.add(candidate);
        return candidate;
     }
@@ -80,15 +82,6 @@ public class ElectoralBody {
         }
         throw new IllegalArgumentException("The candidate does not exist");
     }
-
-    public List <Integer> getRegisteredCandidateIds() {
-        List<Integer> CandidateIdList = new ArrayList<>();
-        for (Candidate candidate : candidateList) {
-            CandidateIdList.add(candidate.getId());
-        }
-        return CandidateIdList;
-    }
-
 
 
 }

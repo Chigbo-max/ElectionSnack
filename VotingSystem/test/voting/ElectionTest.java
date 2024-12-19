@@ -6,16 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ElectionTest {
 
-    @Test
-    public void testVotesAreAddedToVotersList() {
-        ElectoralBody electoralBody = new ElectoralBody();
-        Election election = new Election(electoralBody);
-        Candidate candidate1 = electoralBody.registerCandidate("ade", "wale", "President");
-        election.castVote(000000000, 1);
-        assertEquals(election.getRecentVoterId(), 000000000);
-        assertEquals(candidate1.getId(), 1);
-
-    }
 
     @Test
     public void testThatExceptionIsThrownIfVoterTriesToVoterForACandidateMoreThanOnce() {
@@ -23,10 +13,11 @@ class ElectionTest {
         Candidate candidate1 = electoralBody.registerCandidate("ade", "wale", "President");
         Candidate candidate2 = electoralBody.registerCandidate("ade", "wale", "President");
         Candidate candidate3 = electoralBody.registerCandidate("ade", "wale", "President");
+        Voter voter = electoralBody.registerVoter("ade", "wale", "1234");
         Election election = new Election(electoralBody);
-        election.castVote(000000000, 1);
-        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {election.castVote(000000000, 1);});
-        assertEquals(illegalArgumentException.getMessage(), "You have voted already voted for this candidate");
+        election.castVote(electoralBody.getVoterId(), 1);
+        CandidateHasBeenVotedException candidateHasBeenVotedException = assertThrows(CandidateHasBeenVotedException.class, () -> {election.castVote(electoralBody.getVoterId(), 1);});
+        assertEquals(candidateHasBeenVotedException.getMessage(), "You have voted already voted for this candidate");
 
     }
 
@@ -38,8 +29,18 @@ class ElectionTest {
         VoterNotRegisteredException voterNotRegisteredException = assertThrows(VoterNotRegisteredException.class, () -> {election.castVote(2, 1);});
         assertEquals(voterNotRegisteredException.getMessage(), "Voter with id 2 is not registered");
 
-
     }
+
+    @Test
+    public void testThatExceptionIsThrownIfCandidateIdDoesNotMatch() {
+        ElectoralBody electoralBody = new ElectoralBody();
+        Candidate candidate1 = electoralBody.registerCandidate("ade", "wale", "President");
+        Election election = new Election(electoralBody);
+        CandidateNotRegisteredException candidateNotRegisteredException = assertThrows(CandidateNotRegisteredException.class, () -> {election.validateCandidate(0);});
+        assertEquals(candidateNotRegisteredException.getMessage(), "Candidate with id 0 is not registered");
+    }
+
+
 
 
 }
