@@ -107,8 +107,7 @@ public class voterInterface {
             String firstName = input("Enter first name: ");
             String lastName = input("Enter last name: ");
             String password = input("Enter password: ");
-            var registeredVoter = electoralBody.registerVoter(firstName, lastName, password);
-            voter = registeredVoter;
+            voter = electoralBody.registerVoter(firstName, lastName, password);
             display("Your Voters' Registration Number is : " + " " + voter.getVoterId());
         }
         catch(Exception e){

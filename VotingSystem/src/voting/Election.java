@@ -48,6 +48,7 @@ public class Election {
         throw new VoterNotRegisteredException("Voter with id " + voterId + " is not registered");
     }
 
+
     public void validateCandidate(int candidateId) {
         if(electoralBody.candidateIdList.contains(candidateId)){
             return;
