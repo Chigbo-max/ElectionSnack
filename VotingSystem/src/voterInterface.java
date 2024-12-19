@@ -109,7 +109,7 @@ public class voterInterface {
             String password = input("Enter password: ");
             var registeredVoter = electoralBody.registerVoter(firstName, lastName, password);
             voter = registeredVoter;
-            display("Your Voters' Registration Number is : " + " " + registeredVoter.getVoterId());
+            display("Your Voters' Registration Number is : " + " " + voter.getVoterId());
         }
         catch(Exception e){
             display("Invalid input");
