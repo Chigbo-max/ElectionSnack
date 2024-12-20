@@ -11,10 +11,6 @@ public class Candidate {
         this.id = id;
     }
 
-    public Candidate() {
-
-    }
-
     public String getName() {
         return name;
     }
