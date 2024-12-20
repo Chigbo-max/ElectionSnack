@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class ElectoralBody {
-    public List<Candidate> candidateList = new ArrayList<Candidate>();
+    public static List<Candidate> candidateList = new ArrayList<Candidate>();
     private List<Voter> voterList = new ArrayList<>();
-    public static List<Long> voterIdList = new ArrayList<>();
-    public static List<Integer>candidateIdList = new ArrayList<>();
+    private static List<Long> voterIdList = new ArrayList<>();
+    private static List<Integer>candidateIdList = new ArrayList<>();
 
     private int numberOfCandidates;
     private int numberOfVoters;
@@ -41,6 +41,13 @@ public class ElectoralBody {
         return voter;
     }
 
+    public static List<Integer> getCandidateIdList(){
+        return candidateIdList;
+    }
+
+    public static List<Long> getVoterIdList(){
+        return voterIdList;
+    }
 
     public int getCandidateId() {
         return numberOfCandidates;

@@ -161,7 +161,7 @@ public class voterInterface {
 
     public static void findListOfVotedCandidate(){
 
-        for (Vote list : voter.votes) {
+        for (Vote list : Voter.getVotes()) {
             System.out.println(list.toString());
         }
         goToMainMenu();

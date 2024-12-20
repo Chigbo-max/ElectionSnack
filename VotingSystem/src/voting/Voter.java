@@ -8,7 +8,7 @@ public class Voter {
     private String name;
     private String password;
     private long id;
-    public List<Vote> votes = new ArrayList<>();
+    private static List<Vote> votes = new ArrayList<>();
 
 
 
@@ -24,6 +24,10 @@ public class Voter {
 
     public long getVoterId() {
         return id;
+    }
+
+    public static List<Vote> getVotes() {
+        return votes;
     }
 
 
@@ -60,16 +64,17 @@ public class Voter {
         return false;
     }
 
-    public void validateVoter(long voterId) {
-        if(ElectoralBody.voterIdList.contains(voterId)){
-            return;
+    public boolean validateVoter(long voterId) {
+        if(ElectoralBody.getVoterIdList().contains(voterId)){
+            return true;
         }
+
         throw new VoterNotRegisteredException("Voter with id " + voterId + " is not registered");
     }
 
 
     public void validateCandidate(int candidateId) {
-        if(ElectoralBody.candidateIdList.contains(candidateId)){
+        if(ElectoralBody.getCandidateIdList().contains(candidateId)){
             return;
         }
         throw new CandidateNotRegisteredException("Candidate with id " + candidateId + " is not registered");
