@@ -54,7 +54,7 @@ public class VoterTest {
         Candidate candidate1 = electoralBody.registerCandidate("ade", "wale", "President");
         Voter voter = electoralBody.registerVoter("ade", "wale", "1234");
 
-        CandidateNotRegisteredException candidateNotRegisteredException = assertThrows(CandidateNotRegisteredException.class, () -> {voter.validateCandidate(-1);});
+        CandidateNotRegisteredException candidateNotRegisteredException = assertThrows(CandidateNotRegisteredException.class, () -> {voter.castVote(voter.getVoterId(),-1);});
         assertEquals(candidateNotRegisteredException.getMessage(), "Candidate with id -1 is not registered");
     }
 
