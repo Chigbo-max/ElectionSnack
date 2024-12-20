@@ -1,6 +1,6 @@
 import unittest
+from src.electoralbody import ElectoralBody
 
-from electoralbody import ElectoralBody
 
 class VoterTestCase(unittest.TestCase):
     def test_that_password_is_updated(self):

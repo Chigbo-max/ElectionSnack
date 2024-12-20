@@ -21,7 +21,6 @@ class Voter:
             raise Exception("Password doesn't match")
 
     def cast_vote(self, voter_id, candidate_id):
-        self.validate_candidate_id(candidate_id)
         self.has_voted_a_specific_candidate(candidate_id, voter_id)
 
 
