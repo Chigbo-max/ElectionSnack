@@ -31,10 +31,7 @@ public class Voter {
     }
 
 
-    public void updatePassword(String oldPassword, String newPassword) {
-        if(oldPassword.equals(password))this.password = newPassword;
-        else throw new IllegalArgumentException("Invalid credentials");
-    }
+
 
     public Vote castVote(long voterId, int candidateId){
 
@@ -48,10 +45,19 @@ public class Voter {
         return vote;
     }
 
-    private void validateSpecificCandidateVote(long voterId, int candidateId) {
-        if(hasVotedASpecificCandidate(voterId, candidateId)){
-            throw new CandidateHasBeenVotedException("You have voted already voted for this candidate");
+    public void updatePassword(String oldPassword, String newPassword) {
+        if(oldPassword.equals(password))this.password = newPassword;
+        else throw new IllegalArgumentException("Invalid credentials");
+    }
+
+
+
+    private boolean validateVoter(long voterId) {
+        if(ElectoralBody.getVoterIdList().contains(voterId)){
+            return true;
         }
+
+        throw new VoterNotRegisteredException("Voter with id " + voterId + " is not registered");
     }
 
 
@@ -64,16 +70,13 @@ public class Voter {
         return false;
     }
 
-    public boolean validateVoter(long voterId) {
-        if(ElectoralBody.getVoterIdList().contains(voterId)){
-            return true;
+    private void validateSpecificCandidateVote(long voterId, int candidateId) {
+        if(hasVotedASpecificCandidate(voterId, candidateId)){
+            throw new CandidateHasBeenVotedException("You have voted already voted for this candidate");
         }
-
-        throw new VoterNotRegisteredException("Voter with id " + voterId + " is not registered");
     }
 
-
-    public void validateCandidate(int candidateId) {
+    private void validateCandidate(int candidateId) {
         if(ElectoralBody.getCandidateIdList().contains(candidateId)){
             return;
         }
@@ -81,3 +84,6 @@ public class Voter {
     }
 
 }
+
+
+
