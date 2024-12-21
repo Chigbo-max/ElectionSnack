@@ -10,11 +10,11 @@ class ElectoralBody:
         self.voter_id_list = []
 
     def register_candidate(self, first_name, last_name, position):
-        __candidate_id = len(self.candidate_list) + 1
-        self.candidate_id_list.append(__candidate_id)
+        candidate_id = len(self.candidate_list) + 1
+        self.candidate_id_list.append(candidate_id)
 
         name = first_name + " " + last_name
-        new_candidate = Candidate(name, position,__candidate_id)
+        new_candidate = Candidate(name, position,candidate_id)
         self.candidate_list.append(new_candidate)
         return new_candidate
 

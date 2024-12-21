@@ -87,11 +87,14 @@ class VoterInterface:
     def cast_vote(self):
         try:
             candidate_id = self.__select_candidate()
+            candidate_id = int(candidate_id)
             registration_number = input("Enter your registration number: ")
-            vote = self.voter.cast_vote(registration_number, candidate_id)
+            vote = self.voter.cast_vote(candidate_id, registration_number)
             print(f"Your vote for { self.electoral_body.get_candidate_name(candidate_id)} with ID  {vote.get_candidate_id()} was successful")
         except Exception as e:
             print(str(e))
+        except Exception as f:
+            print(str(f))
         finally:
             self.go_to_main_menu()
 
