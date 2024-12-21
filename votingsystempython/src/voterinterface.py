@@ -93,8 +93,6 @@ class VoterInterface:
             print(f"Your vote for { self.electoral_body.get_candidate_name(candidate_id)} with ID  {vote.get_candidate_id()} was successful")
         except Exception as e:
             print(str(e))
-        except Exception as f:
-            print(str(f))
         finally:
             self.go_to_main_menu()
 

@@ -22,6 +22,7 @@ class Voter:
             raise Exception("Password doesn't match")
 
     def cast_vote(self, candidate_id, voter_id):
+        self.validate_voter(voter_id)
         self.validate_candidate_id(candidate_id)
         self.has_voted_a_specific_candidate(candidate_id, voter_id)
 
@@ -37,6 +38,11 @@ class Voter:
     def validate_candidate_id(self, candidate_id):
         if int(candidate_id) not in self.electoral_body.get_candidate_id_list():
             raise Exception("Candidate id is not valid")
+
+    def validate_voter(self, voter_id):
+        if voter_id not in self.electoral_body.get_voter_id_list():
+            raise Exception("Voter id is not valid")
+
 
 
 

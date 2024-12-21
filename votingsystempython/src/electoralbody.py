@@ -41,6 +41,9 @@ class ElectoralBody:
             if str(candidate.get_id()) == str(candidate_id):
                 return candidate.get_name()
 
+    def get_voter_id_list(self):
+        return self.voter_id_list
+
     def get_candidate_id_list(self):
         return self.candidate_id_list
 

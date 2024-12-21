@@ -27,3 +27,9 @@ class VoterTestCase(unittest.TestCase):
         voter1.cast_vote(candidate1.get_id(),voter1.get_id())
         self.assertRaises(Exception, voter1.cast_vote, 2,voter1.get_id())
 
+    def test_that_exceptions_are_raised_if_voter_id_is_invalid(self):
+        electoral_body = ElectoralBody()
+        voter1 = electoral_body.register_voter("ade", "wale", "1234")
+        candidate1 = electoral_body.register_candidate("bola", "bolanle", "president")
+        voter1.cast_vote(candidate1.get_id(), voter1.get_id())
+        self.assertRaises(Exception, voter1.cast_vote, candidate1.get_id(), 1)
