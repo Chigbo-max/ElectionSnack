@@ -3,11 +3,12 @@ from electoralbody import ElectoralBody
 
 
 class Voter:
-    def __init__(self, name, id, password)->None:
+    def __init__(self, name, id, password, electoral_body)->None:
         self.__name = name
         self.__id = id
         self.__password = password
         self.votes = []
+        self.electoral_body = electoral_body
 
 
     def get_id(self)->int:
@@ -20,9 +21,9 @@ class Voter:
         else:
             raise Exception("Password doesn't match")
 
-    def cast_vote(self, voter_id, candidate_id):
+    def cast_vote(self, candidate_id, voter_id):
+        self.validate_candidate_id(candidate_id)
         self.has_voted_a_specific_candidate(candidate_id, voter_id)
-
 
         vote = Vote(candidate_id, voter_id)
         self.votes.append(vote)
@@ -34,8 +35,8 @@ class Voter:
                 raise Exception("Can't vote twice")
 
     def validate_candidate_id(self, candidate_id):
-        if candidate_id not in ElectoralBody.get_candidate_id_list():
-            raise RuntimeError("Candidate id is not valid")
+        if int(candidate_id) not in self.electoral_body.get_candidate_id_list():
+            raise Exception("Candidate id is not valid")
 
 
 

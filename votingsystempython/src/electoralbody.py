@@ -24,7 +24,7 @@ class ElectoralBody:
         self.voter_id_list.append(voter_id)
 
         name = first_name + " " + last_name
-        new_voter = Voter(name, voter_id, password)
+        new_voter = Voter(name, voter_id, password, self)
         self.voter_list.append(new_voter)
         return new_voter
 
@@ -43,6 +43,8 @@ class ElectoralBody:
 
     def get_candidate_id_list(self):
         return self.candidate_id_list
+
+
 
 
 
