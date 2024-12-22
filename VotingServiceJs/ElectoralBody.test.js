@@ -10,6 +10,7 @@ test("test that electoral body registers candidate", () => {
     expect(candidate1.id).toBe(result);
 });
 
+
 test("test that electoral body registers voters", () => {
     let firstName = "williams";
     let lastName = "williams";

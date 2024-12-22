@@ -1,11 +1,12 @@
 const Candidate = require(`./Candidate.js`);
 const Voter = require(`./Voter.js`);
 
-    class ElectoralBody{
+class ElectoralBody{
 
     #candidateIdList = [];
     #candidates = [];
         #voters = [];
+        #voterIdList = [];
     #numberOfCandidates;
 
     constructor(){
@@ -23,8 +24,9 @@ const Voter = require(`./Voter.js`);
 
     registerVoter(firstName, lastName, password){
         let voterId = this.generateVoterId();
+        this.#voterIdList.push(voterId);
         let name = "firstName"+" " + "lastName";
-        let newVoter = new Voter(name, password, voterId);
+        let newVoter = new Voter(name, password, voterId, this);
         this.#voters.push(newVoter);
         return newVoter;
     }
@@ -35,6 +37,13 @@ const Voter = require(`./Voter.js`);
         return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
     }
 
+    get candidateIdList(){
+        return this.#candidateIdList;
+    }
+
+    get voterIdList(){
+        return this.#voterIdList;
+    }
 
 
 
